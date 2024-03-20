@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Krishna%20Karthikeyan/OneDrive/Desktop/timer/time.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="file:///C:/Users/Krishna%20Karthikeyan/OneDrive/Desktop/timer/main.css">
+    <script src="file:///C:/Users/Krishna%20Karthikeyan/OneDrive/Desktop/timer/main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background-color: #1a1a1a; 
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+        }
+        
+        header {
+            align-items: center;
+            text-align: center;
+            margin-top: 10px;
+            border: 0.5px solid #333; 
+            background-color: #000;
+            padding: 20px; 
+        }
+        
+        header h1 {
+            margin: 0; 
+            color: #fff; 
+            font-size: 24px; 
+        }
+        
+        #timer {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            padding: 20px;
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            background-color: #18aac1; 
+            font-size: 24px; 
+        }
+        
+        #timer h1 {
+            margin: 0; 
+        }
+        
+        .buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #18aac1; 
+            color: #fff; 
+            border: none;
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        
+        .buttons button:hover {
+            background-color: #137c8e; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Timer website</h1>
+    </header>
+    <main>
+        <div id="timer">
+            <h1>00:00:00</h1>
+        </div>
+        <div class="buttons">
+            <button onclick="handlestart()">Start</button>
+            <button onclick="handlestop()">Stop</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </main>
+    <script>
+        var timer;
+        var element = document.getElementById("timer").getElementsByTagName("h1")[0];
+        var sec = 0; 
+        
+        function handlestart() {
+            if (!timer) { 
+                timer = setInterval(() => {
+                    var hours = Math.floor(sec / 3600);
+                    var minutes = Math.floor((sec % 3600) / 60);
+                    var seconds = sec % 60;
+                    element.innerHTML = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                    sec++;
+                }, 1000);
+            }
+        }
+        
+        function handlestop() {
+            clearInterval(timer);
+            timer = null;
+        }
+        
+        function reset() {
+            clearInterval(timer);
+            timer = null; 
+            sec = 0; 
+            element.innerHTML = "00:00:00";
+        }
+    </script>
+
+
+</body></html>
